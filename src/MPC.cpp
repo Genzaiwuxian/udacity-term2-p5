@@ -273,7 +273,7 @@ vector<double> MPC::Solve(Eigen::VectorXd state, Eigen::VectorXd coeffs) {
   for (int i = 0; i < N; ++i)
   {
 	  double x = solution.x[ID_FIRST_X + i];
-	  double y = solution.y[ID_FIRST_Y + i];
+	  double y = solution.x[ID_FIRST_Y + i];
 
 	  x_mpc.push_back(x);
 	  y_mpc.push_back(y);
