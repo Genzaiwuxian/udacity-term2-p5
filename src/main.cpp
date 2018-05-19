@@ -98,8 +98,56 @@ int main() {
           * Both are in between [-1, 1].
           *
           */
-          double steer_value;
-          double throttle_value;
+
+		  // convert ptsx from global cooridinate to vehicle coordinate
+		  const int NUMBER_PTS = ptsx.size(); //number of ptsx/ptsy points
+		  
+		  Eigen::VectorXd ptsx_VecCoor(NUMBER_PTS);
+		  Eigen::VectorXd ptsy_VecCoor(NUMBER_PTS);
+
+		  for (int i = 0; i < NUMBER_PTS; ++i)
+		  {
+			  double dx = ptsx[i] - px;
+			  double dy = ptsy[i] - py;
+
+			  ptsx_VecCoor[i] = dx * cos(-psi) - dy * sin(-psi);
+			  ptsy_VecCoor[i] = dy * cos(-psi) + dx * sin(-psi);
+		  }
+
+		  //current state and coeffs
+		  int fit_order = 3; //fit tripnomial polyfit
+		  auto coeffs = polyfit(ptsx_VecCoor, ptsy_VecCoor, fit_order);
+
+		  const double cte = coeffs[0];
+		  const double epsi = -atan(coeffs[1]);
+
+		  //latency: current state for px, py, psi=0.0;
+		  //however, steering and acceleration or decleration acurator
+		  //have a latency, so at that time, the current state changes
+		  //in this project, the latency is 0.1 which equals to dt
+		  //so, all states should be calculated by kinematic model
+		  //and then input our MPC
+		  //that's the good performance which MPC can handle latency of acuator
+		  //note: in vehicle coordinate, vehicle only change x, and y keep constant 0
+		  double delta = j[1]["steering_angle"];
+		  double a= j[1]["throttle"];
+		  
+		  const double x_next = 0.0 + v * dt;
+		  const double y_next = 0;
+		  const double psi_next = 0.0 + v * (-delta) / Lf * dt;
+		  const double v_next = v + a * dt;
+		  const double cte_next = cte + v * sin(epsi)*dt;
+		  const double epsi_next = epsi + v * (-delta) / Lf * dt;
+
+		  const int NUMBER_OF_STATES = 6;// 6 states: x, y, psi, v, cte, epsi
+		  Eigen::VectorXd states(Numbe);
+		  states << x_next, y_next, psi_next, v_next, cte_next, epsi_next;
+		  
+		  //using MPC
+		  mpc.Solve(states, coeffs);
+
+		  double steer_value = mpc.steer;
+		  double throttle_value = mpc.throttle;
 
           json msgJson;
           // NOTE: Remember to divide by deg2rad(25) before you send the steering value back.
@@ -108,18 +156,27 @@ int main() {
           msgJson["throttle"] = throttle_value;
 
           //Display the MPC predicted trajectory 
-          vector<double> mpc_x_vals;
-          vector<double> mpc_y_vals;
+          // vector<double> mpc_x_vals;
+          // vector<double> mpc_y_vals;
 
           //.. add (x,y) points to list here, points are in reference to the vehicle's coordinate system
           // the points in the simulator are connected by a Green line
 
-          msgJson["mpc_x"] = mpc_x_vals;
-          msgJson["mpc_y"] = mpc_y_vals;
+		  msgJson["mpc_x"] = mpc.x_mpc;
+          msgJson["mpc_y"] = mpc.y_mpc;
 
           //Display the waypoints/reference line
           vector<double> next_x_vals;
           vector<double> next_y_vals;
+
+		  for (int i = 0; i < N; ++i)
+		  {
+			  double x = 5 * i; // show each 5 points
+			  double y = polyeval(coeffs, x);
+
+			  next_x_vals.push_back(x);
+			  next_y_vals.push_back(y);
+		  }
 
           //.. add (x,y) points to list here, points are in reference to the vehicle's coordinate system
           // the points in the simulator are connected by a Yellow line
