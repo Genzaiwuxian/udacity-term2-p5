@@ -7,6 +7,9 @@
 
 using namespace std;
 
+size_t N = 10;
+double dt = 0.1;
+
 //the first ID of each instances
 const int ID_FIRST_X = 0;
 const int ID_FIRST_Y = ID_FIRST_X + N;

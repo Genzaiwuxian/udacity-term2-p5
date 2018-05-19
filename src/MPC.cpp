@@ -7,8 +7,7 @@
 using CppAD::AD;
 
 // TODO: Set the timestep length and duration
-size_t N = 10;
-double dt = 0.1;
+
 
 // This value assumes the model presented in the classroom is used.
 //
@@ -41,14 +40,14 @@ class FG_eval {
 	  for (int i = 0; i < N; ++i)
 	  {
 		  //costs for cte, epsi
-		  const auto cte = x[ID_FIRST_X + i];
+		  const auto cte = vars[ID_FIRST_CTE + i];
 		  const auto cte_2 = cte * cte;
 
-		  const auto epsi = x[ID_FIRST_EPSI + i];
+		  const auto epsi = vars[ID_FIRST_EPSI + i];
 		  const auto epsi_2 = epsi * epsi;
 
 		  //costs for target velocity
-		  const auto v = x[ID_FIRST_V + i] - TARGET_VELOCITY;
+		  const auto v = vars[ID_FIRST_V + i] - TARGET_VELOCITY;
 		  const auto v_2 = v * v;
 
 		  fg[0] += (weight_cte * cte_2 + weight_epsi * epsi_2 + weight_v * v_2);
@@ -57,10 +56,10 @@ class FG_eval {
 	  for (int i = 0; i < N - 1; ++i)
 	  {
 		  //costs for delta and a
-		  const auto delta = x[ID_FIRST_DELTA + i];
+		  const auto delta = vars[ID_FIRST_DELTA + i];
 		  const auto delta_2 = delta * delta;
 
-		  const auto a = x[ID_FIRST_A + i];
+		  const auto a = vars[ID_FIRST_A + i];
 		  const auto a_2 = a * a;
 
 		  fg[0] += (weight_delta*delta_2 + weight_a * a_2);
@@ -69,34 +68,34 @@ class FG_eval {
 	  for (int i = 0; i < N - 2; i++)
 	  {
 		 //costs for delta and a changes
-		  const auto delta_diff = x[ID_FIRST_DELTA + i + 1] - x[ID_FIRST_DELTA + i];
+		  const auto delta_diff = vars[ID_FIRST_DELTA + i + 1] - x[ID_FIRST_DELTA + i];
 		  const auto delta_diff_2 = delta_diff * delta_diff;
 
-		  const auto a_diff = x[ID_FIRST_A + i + 1] - x[ID_FIRST_A + i];
+		  const auto a_diff = vars[ID_FIRST_A + i + 1] - vars[ID_FIRST_A + i];
 		  const auto a_diff_2 = a_diff * a_diff;
 
 		  fg[0] += (weight_delta_diff*delta_diff_2 + weight_a_diff * a_diff_2);
 	  }
 
 	  //constraints
-	  fg[ID_FIRST_X + 1] = x[ID_FIRST_X];
-	  fg[ID_FIRST_Y + 1] = x[ID_FIRST_Y];
-	  fg[ID_FIRST_PSI + 1] = x[ID_FIRST_PSI];
-	  fg[ID_FIRST_V + 1] = x[ID_FIRST_V];
-	  fg[ID_FIRST_CTE + 1] = x[ID_FIRST_CTE];
-	  fg[ID_FIRST_EPSI + 1] = x[ID_FIRST_EPSI];
+	  fg[ID_FIRST_X + 1] = vars[ID_FIRST_X];
+	  fg[ID_FIRST_Y + 1] = vars[ID_FIRST_Y];
+	  fg[ID_FIRST_PSI + 1] = vars[ID_FIRST_PSI];
+	  fg[ID_FIRST_V + 1] = vars[ID_FIRST_V];
+	  fg[ID_FIRST_CTE + 1] = vars[ID_FIRST_CTE];
+	  fg[ID_FIRST_EPSI + 1] = vars[ID_FIRST_EPSI];
 
 	  for (int i = 0; i < N - 1; i++)
 	  {
 		  //current states and steering & acceleration/deceleration
-		  const auto x0 = x[ID_FIRST_X + i];
-		  const auto y0 = x[ID_FIRST_Y + i];
-		  const auto psi0 = x[ID_FIRST_PSI + i];
-		  const auto v0 = x[ID_FIRST_V + i];
-		  const auto cte0 = x[ID_FIRST_CTE + i];
-		  const auto epsi0 = x[ID_FIRST_EPSI + i];
-		  const auto delta0 = x[ID_FIRST_DELTA + i];
-		  const auto a0 = x[ID_FIRST_A + i];
+		  const auto x0 = vars[ID_FIRST_X + i];
+		  const auto y0 = vars[ID_FIRST_Y + i];
+		  const auto psi0 = vars[ID_FIRST_PSI + i];
+		  const auto v0 = vars[ID_FIRST_V + i];
+		  const auto cte0 = vars[ID_FIRST_CTE + i];
+		  const auto epsi0 = vars[ID_FIRST_EPSI + i];
+		  const auto delta0 = vars[ID_FIRST_DELTA + i];
+		  const auto a0 = vars[ID_FIRST_A + i];
 
 		  //trinomial fitting: y_dest=f(x0) and psi_dest=f'(x0)
 		  const auto x0_2 = x0 * x0;
@@ -114,12 +113,12 @@ class FG_eval {
 		  const auto epsi1_mpc = psi0 - psi_dest + v0 * (-delta0)* / Lf * dt;
 
 		  //next state
-		  const auto x1 = x[ID_FIRST_X + i+1];
-		  const auto y1 = x[ID_FIRST_Y + i+1];
-		  const auto psi1 = x[ID_FIRST_PSI + i+1];
-		  const auto v1 = x[ID_FIRST_V + i+1];
-		  const auto cte1 = x[ID_FIRST_CTE + i+1];
-		  const auto epsi1 = x[ID_FIRST_EPSI + i+1];
+		  const auto x1 = vars[ID_FIRST_X + i+1];
+		  const auto y1 = vars[ID_FIRST_Y + i+1];
+		  const auto psi1 = vars[ID_FIRST_PSI + i+1];
+		  const auto v1 = vars[ID_FIRST_V + i+1];
+		  const auto cte1 = vars[ID_FIRST_CTE + i+1];
+		  const auto epsi1 = vars[ID_FIRST_EPSI + i+1];
 
 		  //constraints
 		  const auto fg[ID_FIRST_X + i + 2] = x1 - x1_mpc;
