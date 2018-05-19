@@ -171,7 +171,7 @@ vector<double> MPC::Solve(Eigen::VectorXd state, Eigen::VectorXd coeffs) {
   vars[ID_FIRST_PSI] = psi;
   vars[ID_FIRST_V] = v;
   vars[ID_FIRST_CTE] = cte;
-  cars[ID_FIRST_EPSI] = epsi;
+  vars[ID_FIRST_EPSI] = epsi;
 
   Dvector vars_lowerbound(n_vars);
   Dvector vars_upperbound(n_vars);
