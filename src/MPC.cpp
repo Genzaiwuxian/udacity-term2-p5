@@ -68,7 +68,7 @@ class FG_eval {
 	  for (int i = 0; i < N - 2; i++)
 	  {
 		 //costs for delta and a changes
-		  const auto delta_diff = vars[ID_FIRST_DELTA + i + 1] - x[ID_FIRST_DELTA + i];
+		  const auto delta_diff = vars[ID_FIRST_DELTA + i + 1] - vars[ID_FIRST_DELTA + i];
 		  const auto delta_diff_2 = delta_diff * delta_diff;
 
 		  const auto a_diff = vars[ID_FIRST_A + i + 1] - vars[ID_FIRST_A + i];
@@ -110,7 +110,7 @@ class FG_eval {
 		  const auto psi1_mpc = psi0 + v0 * (-delta0) / Lf * dt;
 		  const auto v1_mpc = v0 + a0 * dt;
 		  const auto cte1_mpc = y_dest - y0 + v0 * CppAD::sin(epsi0)*dt;
-		  const auto epsi1_mpc = psi0 - psi_dest + v0 * (-delta0)* / Lf * dt;
+		  const auto epsi1_mpc = psi0 - psi_dest + v0 * (-delta0)/ Lf * dt;
 
 		  //next state
 		  const auto x1 = vars[ID_FIRST_X + i+1];
@@ -121,12 +121,12 @@ class FG_eval {
 		  const auto epsi1 = vars[ID_FIRST_EPSI + i+1];
 
 		  //constraints
-		  const auto fg[ID_FIRST_X + i + 2] = x1 - x1_mpc;
-		  const auto fg[ID_FIRST_Y + i + 2] = y1 - y1_mpc;
-		  const auto fg[ID_FIRST_PSI + i + 2] = psi1 - psi1_mpc;
-		  const auto fg[ID_FIRST_V + i + 2] = v1 - v1_mpc;
-		  const auto fg[ID_FIRST_CTE + i + 2] = cte1 - cte1_mpc;
-		  const auto fg[ID_FIRST_EPSI + i + 2] = epsi1 - epsi1_mpc;
+		  fg[ID_FIRST_X + i + 2] = x1 - x1_mpc;
+		  fg[ID_FIRST_Y + i + 2] = y1 - y1_mpc;
+		  fg[ID_FIRST_PSI + i + 2] = psi1 - psi1_mpc;
+		  fg[ID_FIRST_V + i + 2] = v1 - v1_mpc;
+		  fg[ID_FIRST_CTE + i + 2] = cte1 - cte1_mpc;
+		  fg[ID_FIRST_EPSI + i + 2] = epsi1 - epsi1_mpc;
 	  }
   }
 };
