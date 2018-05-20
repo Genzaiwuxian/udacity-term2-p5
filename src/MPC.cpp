@@ -37,7 +37,7 @@ class FG_eval {
 	  fg[0] = 0.0;
 
 	  //costs
-	  for (int i = 0; i < N; ++i)
+	  for (unsigned int i = 0; i < N; ++i)
 	  {
 		  //costs for cte, epsi
 		  const auto cte = vars[ID_FIRST_CTE + i];
@@ -53,7 +53,7 @@ class FG_eval {
 		  fg[0] += (weight_cte * cte_2 + weight_epsi * epsi_2 + weight_v * v_2);
 	  }
 
-	  for (int i = 0; i < N - 1; ++i)
+	  for (unsigned int i = 0; i < N - 1; ++i)
 	  {
 		  //costs for delta and a
 		  const auto delta = vars[ID_FIRST_DELTA + i];
@@ -65,7 +65,7 @@ class FG_eval {
 		  fg[0] += (weight_delta*delta_2 + weight_a * a_2);
 	  }
 
-	  for (int i = 0; i < N - 2; i++)
+	  for (unsigned int i = 0; i < N - 2; i++)
 	  {
 		 //costs for delta and a changes
 		  const auto delta_diff = vars[ID_FIRST_DELTA + i + 1] - vars[ID_FIRST_DELTA + i];
@@ -85,7 +85,7 @@ class FG_eval {
 	  fg[ID_FIRST_CTE + 1] = vars[ID_FIRST_CTE];
 	  fg[ID_FIRST_EPSI + 1] = vars[ID_FIRST_EPSI];
 
-	  for (int i = 0; i < N - 1; i++)
+	  for (unsigned int i = 0; i < N - 1; i++)
 	  {
 		  //current states and steering & acceleration/deceleration
 		  const auto x0 = vars[ID_FIRST_X + i];
@@ -140,7 +140,6 @@ MPC::~MPC() {}
 vector<double> MPC::Solve(Eigen::VectorXd state, Eigen::VectorXd coeffs) {
 
   bool ok = true;
-  size_t i;
   typedef CPPAD_TESTVECTOR(double) Dvector;
 
   const double x = state[0];
@@ -162,7 +161,7 @@ vector<double> MPC::Solve(Eigen::VectorXd state, Eigen::VectorXd coeffs) {
   // Initial value of the independent variables.
   // SHOULD BE 0 besides initial state.
   Dvector vars(n_vars);
-  for (int i = 0; i < n_vars; i++) {
+  for (unsigned int i = 0; i < n_vars; i++) {
     vars[i] = 0;
   }
 

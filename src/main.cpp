@@ -171,7 +171,7 @@ int main() {
           vector<double> next_x_vals;
           vector<double> next_y_vals;
 
-		  for (int i = 0; i < N; ++i)
+		  for (unsigned int i = 0; i < N; ++i)
 		  {
 			  double x = 5 * i; // show each 5 points
 			  double y = polyeval(coeffs, x);
