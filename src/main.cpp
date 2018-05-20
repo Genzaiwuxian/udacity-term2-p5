@@ -132,6 +132,8 @@ int main() {
 		  double delta = j[1]["steering_angle"];
 		  double a= j[1]["throttle"];
 		  
+		  const double Lf = 2.67;
+
 		  const double x_next = 0.0 + v * dt;
 		  const double y_next = 0;
 		  const double psi_next = 0.0 + v * (-delta) / Lf * dt;
@@ -140,7 +142,7 @@ int main() {
 		  const double epsi_next = epsi + v * (-delta) / Lf * dt;
 
 		  const int NUMBER_OF_STATES = 6;// 6 states: x, y, psi, v, cte, epsi
-		  Eigen::VectorXd states(Numbe);
+		  Eigen::VectorXd states(NUMBER_OF_STATES);
 		  states << x_next, y_next, psi_next, v_next, cte_next, epsi_next;
 		  
 		  //using MPC

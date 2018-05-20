@@ -37,10 +37,6 @@ const int N_STATES_ACTUATIONS = N * 6 + (N - 1) * 2;
 const int N_STATES = N * 6;
 
 
-
-
-
-
 class MPC {
  public:
   MPC();
