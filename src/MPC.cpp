@@ -156,14 +156,14 @@ vector<double> MPC::Solve(Eigen::VectorXd state, Eigen::VectorXd coeffs) {
   // element vector and there are 10 timesteps. The number of variables is:
   //
   // 4 * 10 + 2 * 9
-  size_t n_vars = N * 6 + (N - 1) * 2;
+  // size_t n_vars = N * 6 + (N - 1) * 2;
   // TODO: Set the number of constraints
-  size_t n_constraints = N * 6;
+  // size_t n_constraints = N * 6;
 
   // Initial value of the independent variables.
   // SHOULD BE 0 besides initial state.
-  Dvector vars(n_vars);
-  for (unsigned int i = 0; i < n_vars; i++) {
+  Dvector vars(N_STATES_ACTUATIONS);
+  for (unsigned int i = 0; i < N_STATES_ACTUATIONS; i++) {
     vars[i] = 0;
   }
 
@@ -174,8 +174,8 @@ vector<double> MPC::Solve(Eigen::VectorXd state, Eigen::VectorXd coeffs) {
   vars[ID_FIRST_CTE] = cte;
   vars[ID_FIRST_EPSI] = epsi;
 
-  Dvector vars_lowerbound(n_vars);
-  Dvector vars_upperbound(n_vars);
+  Dvector vars_lowerbound(N_STATES_ACTUATIONS);
+  Dvector vars_upperbound(N_STATES_ACTUATIONS);
   // TODO: Set lower and upper limits for variables.
   //x, y, psi, v is set to number that computer can handle
   for (int i = 0; i < ID_FIRST_DELTA; ++i)
@@ -192,7 +192,7 @@ vector<double> MPC::Solve(Eigen::VectorXd state, Eigen::VectorXd coeffs) {
   }
 
   // a<-[-0.7,1]
-  for (unsigned int i = ID_FIRST_A; i < n_vars; ++i)
+  for (unsigned int i = ID_FIRST_A; i < N_STATES_ACTUATIONS; ++i)
   {
 	  vars_lowerbound[i] = -0.7;
 	  vars_upperbound[i] = 1.0;
@@ -203,7 +203,7 @@ vector<double> MPC::Solve(Eigen::VectorXd state, Eigen::VectorXd coeffs) {
   // Should be 0 besides initial state.
   Dvector constraints_lowerbound(n_constraints);
   Dvector constraints_upperbound(n_constraints);
-  for (unsigned int i = 0; i < n_constraints; i++) {
+  for (unsigned int i = 0; i < N_STATES; i++) {
     constraints_lowerbound[i] = 0;
     constraints_upperbound[i] = 0;
   }
