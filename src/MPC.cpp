@@ -192,7 +192,7 @@ vector<double> MPC::Solve(Eigen::VectorXd state, Eigen::VectorXd coeffs) {
   }
 
   // a<-[-0.7,1]
-  for (int i = ID_FIRST_A; i < n_vars; ++i)
+  for (unsigned int i = ID_FIRST_A; i < n_vars; ++i)
   {
 	  vars_lowerbound[i] = -0.7;
 	  vars_upperbound[i] = 1.0;
@@ -203,7 +203,7 @@ vector<double> MPC::Solve(Eigen::VectorXd state, Eigen::VectorXd coeffs) {
   // Should be 0 besides initial state.
   Dvector constraints_lowerbound(n_constraints);
   Dvector constraints_upperbound(n_constraints);
-  for (int i = 0; i < n_constraints; i++) {
+  for (unsigned int i = 0; i < n_constraints; i++) {
     constraints_lowerbound[i] = 0;
     constraints_upperbound[i] = 0;
   }
@@ -271,7 +271,7 @@ vector<double> MPC::Solve(Eigen::VectorXd state, Eigen::VectorXd coeffs) {
   x_mpc = {};
   y_mpc = {};
 
-  for (int i = 0; i < N; ++i)
+  for (unsigned int i = 0; i < N; ++i)
   {
 	  double x = solution.x[ID_FIRST_X + i];
 	  double y = solution.x[ID_FIRST_Y + i];
