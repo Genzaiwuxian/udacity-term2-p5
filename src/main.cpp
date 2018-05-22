@@ -132,14 +132,16 @@ int main() {
 		  double delta = j[1]["steering_angle"];
 		  double a= j[1]["throttle"];
 		  
-		  const double Lf = 2.67;   
+		  const double Lf = 2.67;
+		  double dt_main = 0.1;
+		  size_t N_main = 10;
 
-		  const double x_next = 0.0 + v * dt;
+		  const double x_next = 0.0 + v * dt_main;
 		  const double y_next = 0;
-		  const double psi_next = 0.0 + v * (-delta) / Lf * dt;
-		  const double v_next = v + a * dt;
-		  const double cte_next = cte + v * sin(epsi)*dt;
-		  const double epsi_next = epsi + v * (-delta) / Lf * dt;
+		  const double psi_next = 0.0 + v * (-delta) / Lf * dt_main;
+		  const double v_next = v + a * dt_main;
+		  const double cte_next = cte + v * sin(epsi)*dt_main;
+		  const double epsi_next = epsi + v * (-delta) / Lf * dt_main;
 
 		  const int NUMBER_OF_STATES = 6;// 6 states: x, y, psi, v, cte, epsi
 		  Eigen::VectorXd states(NUMBER_OF_STATES);
@@ -171,7 +173,7 @@ int main() {
           vector<double> next_x_vals;
           vector<double> next_y_vals;
 
-		  for (unsigned int i = 0; i < N; ++i)
+		  for (unsigned int i = 0; i < N_main; ++i)
 		  {
 			  double x = 5 * i; // show each 5 points
 			  double y = polyeval(coeffs, x);
