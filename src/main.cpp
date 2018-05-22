@@ -132,7 +132,7 @@ int main() {
 		  double delta = j[1]["steering_angle"];
 		  double a= j[1]["throttle"];
 		  
-		  const double Lf = 2.67;
+		  const double Lf = 2.67;   
 
 		  const double x_next = 0.0 + v * dt;
 		  const double y_next = 0;

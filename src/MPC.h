@@ -7,8 +7,8 @@
 
 using namespace std;
 
-size_t N = 10;
-double dt = 0.1;
+extern size_t N = 10;
+extern double dt = 0.1;
 
 //the first ID of each instances
 const int ID_FIRST_X = 0;

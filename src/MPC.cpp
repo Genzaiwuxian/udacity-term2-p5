@@ -20,6 +20,8 @@ using CppAD::AD;
 //
 // This is the length from front to CoG that has a similar radius.
 const double Lf = 2.67;
+size_t N = 10;
+double dt = 0.1;
 
 class FG_eval {
  public:
