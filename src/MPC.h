@@ -7,29 +7,29 @@
 
 using namespace std;
 
-size_t N_h = 10;
+// size_t N_h = 10;
 
 //the first ID of each instances
 const int ID_FIRST_X = 0;
-const int ID_FIRST_Y = ID_FIRST_X + N_h;
-const int ID_FIRST_PSI = ID_FIRST_Y + N_h;
-const int ID_FIRST_V = ID_FIRST_PSI + N_h;
-const int ID_FIRST_CTE = ID_FIRST_V + N_h;
-const int ID_FIRST_EPSI = ID_FIRST_CTE + N_h;
-const int ID_FIRST_DELTA = ID_FIRST_EPSI + N_h;
-const int ID_FIRST_A = ID_FIRST_DELTA + N_h;
+const int ID_FIRST_Y = ID_FIRST_X + 10;
+const int ID_FIRST_PSI = ID_FIRST_Y + 10;
+const int ID_FIRST_V = ID_FIRST_PSI + 10;
+const int ID_FIRST_CTE = ID_FIRST_V + 10;
+const int ID_FIRST_EPSI = ID_FIRST_CTE + 10;
+const int ID_FIRST_DELTA = ID_FIRST_EPSI + 10;
+const int ID_FIRST_A = ID_FIRST_DELTA + 10;
 
 //target velocity
 const double TARGET_VELOCITY = 60.0;
 
 //weights for each constraints
-const double weight_cte = 1.0;
-const double weight_epsi = 1.0;
+const double weight_cte = 1500.0;
+const double weight_epsi = 1500.0;
 const double weight_v = 1.0;
-const double weight_delta = 1.0;
-const double weight_a = 1.0;
-const double weight_delta_diff = 1.0;
-const double weight_a_diff = 1.0;
+const double weight_delta = 10.0;
+const double weight_a = 10.0;
+const double weight_delta_diff = 150.0;
+const double weight_a_diff = 15.0;
 
 //numbers of states(6: x, y, psi, v, cte, epsi) + steering&acc/deceleration (2: delta, a)
 const int N_STATES_ACTUATIONS = N_h * 6 + (N_h - 1) * 2;
