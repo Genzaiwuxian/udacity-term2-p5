@@ -7,17 +7,20 @@
 
 using namespace std;
 
+size_t N=3;
+double dt=0.1;
+
 // size_t N_h = 10;
 
 //the first ID of each instances
 const int ID_FIRST_X = 0;
-const int ID_FIRST_Y = ID_FIRST_X + 10;
-const int ID_FIRST_PSI = ID_FIRST_Y + 10;
-const int ID_FIRST_V = ID_FIRST_PSI + 10;
-const int ID_FIRST_CTE = ID_FIRST_V + 10;
-const int ID_FIRST_EPSI = ID_FIRST_CTE + 10;
-const int ID_FIRST_DELTA = ID_FIRST_EPSI + 10;
-const int ID_FIRST_A = ID_FIRST_DELTA + 10;
+const int ID_FIRST_Y = ID_FIRST_X + N;
+const int ID_FIRST_PSI = ID_FIRST_Y + N;
+const int ID_FIRST_V = ID_FIRST_PSI + N;
+const int ID_FIRST_CTE = ID_FIRST_V + N;
+const int ID_FIRST_EPSI = ID_FIRST_CTE + N;
+const int ID_FIRST_DELTA = ID_FIRST_EPSI + N;
+const int ID_FIRST_A = ID_FIRST_DELTA + N;
 
 //target velocity
 const double TARGET_VELOCITY = 60.0;
@@ -32,8 +35,8 @@ const double weight_delta_diff = 150.0;
 const double weight_a_diff = 15.0;
 
 //numbers of states(6: x, y, psi, v, cte, epsi) + steering&acc/deceleration (2: delta, a)
-const int N_STATES_ACTUATIONS = 10 * 6 + (10 - 1) * 2;
-const int N_STATES = 10 * 6;
+const auto N_STATES_ACTUATIONS = N * 6 + (N - 1) * 2;
+const auto N_STATES = N * 6;
 
 
 class MPC {

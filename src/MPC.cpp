@@ -20,8 +20,6 @@ using CppAD::AD;
 //
 // This is the length from front to CoG that has a similar radius.
 const double Lf = 2.67;
-size_t N = 10;
-double dt = 0.1;
 
 class FG_eval {
  public:
@@ -129,6 +127,8 @@ class FG_eval {
 		  fg[ID_FIRST_V + i + 2] = v1 - v1_mpc;
 		  fg[ID_FIRST_CTE + i + 2] = cte1 - cte1_mpc;
 		  fg[ID_FIRST_EPSI + i + 2] = epsi1 - epsi1_mpc;
+
+		  cout << "contraints: " << i << endl;
 	  }
   }
 };
@@ -161,7 +161,7 @@ vector<double> MPC::Solve(Eigen::VectorXd state, Eigen::VectorXd coeffs) {
 
   // Initial value of the independent variables.
   // SHOULD BE 0 besides initial state.
-  typedef CPPAD_TESTVECTOR(double) Dvector;
+  
 
   Dvector vars(N_STATES_ACTUATIONS);
   for (unsigned int i = 0; i < N_STATES_ACTUATIONS; i++) {
@@ -183,6 +183,8 @@ vector<double> MPC::Solve(Eigen::VectorXd state, Eigen::VectorXd coeffs) {
   {
 	  vars_lowerbound[i] = -1.0e8;
 	  vars_upperbound[i] = 1.0e8;
+
+	  cout << "x, y psi, v: " << i << endl;
   }
 
   //delta<-[-0.7,+0.7]
@@ -190,6 +192,8 @@ vector<double> MPC::Solve(Eigen::VectorXd state, Eigen::VectorXd coeffs) {
   {
 	  vars_lowerbound[i] = -0.7;
 	  vars_upperbound[i] = 0.7;
+
+	  cout << "delta: " << i << endl;
   }
 
   // a<-[-0.7,1]
@@ -197,6 +201,8 @@ vector<double> MPC::Solve(Eigen::VectorXd state, Eigen::VectorXd coeffs) {
   {
 	  vars_lowerbound[i] = -0.7;
 	  vars_upperbound[i] = 1.0;
+
+	  cout << "a: " << i << endl;
   }
 
 
@@ -207,6 +213,8 @@ vector<double> MPC::Solve(Eigen::VectorXd state, Eigen::VectorXd coeffs) {
   for (unsigned int i = 0; i < N_STATES; i++) {
     constraints_lowerbound[i] = 0;
     constraints_upperbound[i] = 0;
+
+	cout << "contraints_lowupper: " << i << endl;
   }
 
   constraints_lowerbound[ID_FIRST_X] = x;
@@ -279,6 +287,8 @@ vector<double> MPC::Solve(Eigen::VectorXd state, Eigen::VectorXd coeffs) {
 
 	  x_mpc.push_back(x);
 	  y_mpc.push_back(y);
+
+	  cout << "x_y_mpc: " << i << endl;
   }
 
   return {};
