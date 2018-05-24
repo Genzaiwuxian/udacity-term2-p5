@@ -7,8 +7,8 @@
 
 using namespace std;
 
-size_t N=3;
-double dt=0.1;
+const size_t N=3;
+const double dt=0.1;
 
 // size_t N_h = 10;
 
