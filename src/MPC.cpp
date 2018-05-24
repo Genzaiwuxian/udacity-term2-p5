@@ -161,6 +161,8 @@ vector<double> MPC::Solve(Eigen::VectorXd state, Eigen::VectorXd coeffs) {
 
   // Initial value of the independent variables.
   // SHOULD BE 0 besides initial state.
+  typedef CPPAD_TESTVECTOR(double) Dvector;
+
   Dvector vars(N_STATES_ACTUATIONS);
   for (unsigned int i = 0; i < N_STATES_ACTUATIONS; i++) {
     vars[i] = 0;

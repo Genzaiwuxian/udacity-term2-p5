@@ -6,7 +6,6 @@
 #include <vector>
 
 using namespace std;
-typedef CPPAD_TESTVECTOR(double) Dvector;
 
 // size_t N_h = 10;
 
