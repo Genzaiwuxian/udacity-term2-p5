@@ -232,10 +232,10 @@ vector<double> MPC::Solve(Eigen::VectorXd state, Eigen::VectorXd coeffs) {
   constraints_upperbound[ID_FIRST_CTE] = cte;
   constraints_upperbound[ID_FIRST_EPSI] = epsi;
 
-
+  cout << "ok1" << endl;
   // object that computes objective and constraints
   FG_eval fg_eval(coeffs);
-
+  cout << "ok2" << endl;
   //
   // NOTE: You don't have to worry about these options
   //
