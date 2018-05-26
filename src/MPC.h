@@ -13,14 +13,14 @@ const double dt=0.1;
 // size_t N_h = 10;
 
 //the first ID of each instances
-const int ID_FIRST_X = 0;
-const int ID_FIRST_Y = ID_FIRST_X + N;
-const int ID_FIRST_PSI = ID_FIRST_Y + N;
-const int ID_FIRST_V = ID_FIRST_PSI + N;
-const int ID_FIRST_CTE = ID_FIRST_V + N;
-const int ID_FIRST_EPSI = ID_FIRST_CTE + N;
-const int ID_FIRST_DELTA = ID_FIRST_EPSI + N;
-const int ID_FIRST_A = ID_FIRST_DELTA + N;
+const size_t ID_FIRST_X = 0;
+const size_t ID_FIRST_Y = ID_FIRST_X + N;
+const size_t ID_FIRST_PSI = ID_FIRST_Y + N;
+const size_t ID_FIRST_V = ID_FIRST_PSI + N;
+const size_t ID_FIRST_CTE = ID_FIRST_V + N;
+const size_t ID_FIRST_EPSI = ID_FIRST_CTE + N;
+const size_t ID_FIRST_DELTA = ID_FIRST_EPSI + N;
+const size_t ID_FIRST_A = ID_FIRST_DELTA + N-1;
 
 //target velocity
 const double TARGET_VELOCITY = 60.0;
