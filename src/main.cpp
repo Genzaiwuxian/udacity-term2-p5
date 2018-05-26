@@ -134,7 +134,7 @@ int main() {
 		  
 		  const double Lf = 2.67;
 		  double dt_main = 0.1;
-		  size_t N_main = 3;
+		  size_t N_main = 10;
 
 		  const double x_next = 0.0 + v * dt_main;
 		  const double y_next = 0;

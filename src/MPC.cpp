@@ -128,7 +128,7 @@ class FG_eval {
 		  fg[ID_FIRST_CTE + i + 2] = cte1 - cte1_mpc;
 		  fg[ID_FIRST_EPSI + i + 2] = epsi1 - epsi1_mpc;
 
-		  cout << "contraints: " << i << endl;
+		  //cout << "contraints: " << i << endl;
 	  }
   }
 };
@@ -185,7 +185,7 @@ vector<double> MPC::Solve(Eigen::VectorXd state, Eigen::VectorXd coeffs) {
 	  vars_lowerbound[i] = -1.0e8;
 	  vars_upperbound[i] = 1.0e8;
 
-	  cout << "x, y psi, v: " << i << endl;
+	 // cout << "x, y psi, v: " << i << endl;
   }
 
   //delta<-[-0.7,+0.7]
@@ -194,7 +194,7 @@ vector<double> MPC::Solve(Eigen::VectorXd state, Eigen::VectorXd coeffs) {
 	  vars_lowerbound[i] = -0.7;
 	  vars_upperbound[i] = 0.7;
 
-	  cout << "delta: " << i << endl;
+	  // cout << "delta: " << i << endl;
   }
 
   // a<-[-0.7,1]
@@ -203,7 +203,7 @@ vector<double> MPC::Solve(Eigen::VectorXd state, Eigen::VectorXd coeffs) {
 	  vars_lowerbound[i] = -0.7;
 	  vars_upperbound[i] = 1.0;
 
-	  cout << "a: " << i << endl;
+	  // cout << "a: " << i << endl;
   }
 
 
@@ -215,7 +215,7 @@ vector<double> MPC::Solve(Eigen::VectorXd state, Eigen::VectorXd coeffs) {
     constraints_lowerbound[i] = 0;
     constraints_upperbound[i] = 0;
 
-	cout << "contraints_lowupper: " << i << endl;
+	// cout << "contraints_lowupper: " << i << endl;
   }
 
   constraints_lowerbound[ID_FIRST_X] = x;
@@ -232,10 +232,8 @@ vector<double> MPC::Solve(Eigen::VectorXd state, Eigen::VectorXd coeffs) {
   constraints_upperbound[ID_FIRST_CTE] = cte;
   constraints_upperbound[ID_FIRST_EPSI] = epsi;
 
-  cout << "ok1" << endl;
   // object that computes objective and constraints
   FG_eval fg_eval(coeffs);
-  cout << "ok2" << endl;
   //
   // NOTE: You don't have to worry about these options
   //
@@ -289,7 +287,6 @@ vector<double> MPC::Solve(Eigen::VectorXd state, Eigen::VectorXd coeffs) {
 	  x_mpc.push_back(x);
 	  y_mpc.push_back(y);
 
-	  cout << "x_y_mpc: " << i << endl;
   }
 
   return {};
