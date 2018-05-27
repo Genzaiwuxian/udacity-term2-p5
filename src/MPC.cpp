@@ -105,7 +105,7 @@ class FG_eval {
 		  const auto x0_3 = x0_2 * x0;
 
 		  const auto y_dest = coeffs[3] * x0_3 + coeffs[2] * x0_2 + coeffs[1] * x0+coeffs[0];
-		  const auto psi_dest = CppAD::atan(3 * coeffs[3] * x0_3 + 2 * coeffs[2] * x0_2 + x0);
+		  const auto psi_dest = CppAD::atan(3 * coeffs[3] * x0_2 + 2 * coeffs[2] * x0 + coeffs[1]);
 
 		  //next state by MPC(kinematic model)
 		  const auto x1_mpc = x0 + v0 * CppAD::cos(psi0)*dt;
