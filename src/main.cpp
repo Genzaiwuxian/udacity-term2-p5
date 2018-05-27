@@ -109,7 +109,7 @@ int main() {
 		  {
 			  double dx = ptsx[i] - px;
 			  double dy = ptsy[i] - py;
-
+				
 			  ptsx_VecCoor[i] = dx * cos(-psi) - dy * sin(-psi);
 			  ptsy_VecCoor[i] = dy * cos(-psi) + dx * sin(-psi);
 		  }
@@ -134,7 +134,7 @@ int main() {
 		  
 		  const double Lf = 2.67;
 		  double dt_main = 0.1;
-		  size_t N_main = 10;
+		  size_t N_main = 7;
 
 		  const double x_next = 0.0 + v * dt_main;
 		  const double y_next = 0;

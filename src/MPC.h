@@ -7,7 +7,7 @@
 
 using namespace std;
 
-const size_t N=10;
+const size_t N=7;
 const double dt=0.1;
 
 // size_t N_h = 10;
