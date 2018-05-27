@@ -63,6 +63,9 @@ class FG_eval {
 		  const auto a_2 = a * a;
 
 		  fg[0] += (weight_delta*delta_2 + weight_a * a_2);
+
+		  // cost for delta and v
+		  fg[0] += 800 * vars[ID_FIRST_DELTA + i] * vars[ID_FIRST_V];
 	  }
 
 	  for (unsigned int i = 0; i < N - 2; i++)
