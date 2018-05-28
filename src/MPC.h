@@ -7,7 +7,7 @@
 
 using namespace std;
 
-const size_t N=7;
+const size_t N=10;
 const double dt=0.1;
 
 // size_t N_h = 10;
@@ -23,11 +23,11 @@ const size_t ID_FIRST_DELTA = ID_FIRST_EPSI + N;
 const size_t ID_FIRST_A = ID_FIRST_DELTA + N-1;
 
 //target velocity
-const double TARGET_VELOCITY = 60.0;
+const double TARGET_VELOCITY = 50.0;
 
 //weights for each constraints
-const double weight_cte = 1500.0;
-const double weight_epsi = 1500.0;
+const double weight_cte = 2000.0;
+const double weight_epsi = 2000.0;
 const double weight_v = 1.0;
 const double weight_delta = 10.0;
 const double weight_a = 10.0;

@@ -134,7 +134,7 @@ int main() {
 		  
 		  const double Lf = 2.67;
 		  double dt_main = 0.1;
-		  size_t N_main = 7;
+		  size_t N_main = 10;
 
 		  const double x_next = 0.0 + v * dt_main;
 		  const double y_next = 0;
@@ -150,7 +150,7 @@ int main() {
 		  //using MPC
 		  mpc.Solve(states, coeffs);
 
-		  double steer_value = mpc.steer;
+		  double steer_value = mpc.steer/deg2rad(25);
 		  double throttle_value = mpc.throttle;
 
           json msgJson;

@@ -65,7 +65,7 @@ class FG_eval {
 		  fg[0] += (weight_delta*delta_2 + weight_a * a_2);
 
 		  // cost for delta and v
-		  fg[0] += 800 * vars[ID_FIRST_DELTA + i] * vars[ID_FIRST_V];
+		  fg[0] += 800 * CppAD::pow((vars[ID_FIRST_DELTA + i] * vars[ID_FIRST_V]),2);
 	  }
 
 	  for (unsigned int i = 0; i < N - 2; i++)
@@ -185,8 +185,8 @@ vector<double> MPC::Solve(Eigen::VectorXd state, Eigen::VectorXd coeffs) {
   //x, y, psi, v is set to number that computer can handle
   for (int i = 0; i < ID_FIRST_DELTA; ++i)
   {
-	  vars_lowerbound[i] = -1.0e8;
-	  vars_upperbound[i] = 1.0e8;
+	  vars_lowerbound[i] = -1.0e19;
+	  vars_upperbound[i] = 1.0e19;
 
 	 // cout << "x, y psi, v: " << i << endl;
   }
