@@ -194,8 +194,8 @@ vector<double> MPC::Solve(Eigen::VectorXd state, Eigen::VectorXd coeffs) {
   //delta<-[-0.7,+0.7]
   for (int i = ID_FIRST_DELTA; i < ID_FIRST_A; ++i)
   {
-	  vars_lowerbound[i] = -0.7;
-	  vars_upperbound[i] = 0.7;
+	  vars_lowerbound[i] = -0.43633;
+	  vars_upperbound[i] = 0.43633;
 
 	  // cout << "delta: " << i << endl;
   }
