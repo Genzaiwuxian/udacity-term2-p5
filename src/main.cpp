@@ -175,7 +175,7 @@ int main() {
 
 		  for (unsigned int i = 0; i < N_main; ++i)
 		  {
-			  double x = 10.0 * i; // show each 5 points
+			  double x = 25.0 * i; // show each 5 points
 			  double y = polyeval(coeffs, x);
 
 			  next_x_vals.push_back(x);
