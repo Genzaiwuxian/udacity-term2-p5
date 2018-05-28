@@ -23,13 +23,13 @@ const size_t ID_FIRST_DELTA = ID_FIRST_EPSI + N;
 const size_t ID_FIRST_A = ID_FIRST_DELTA + N-1;
 
 //target velocity
-const double TARGET_VELOCITY = 50.0;
+const double TARGET_VELOCITY = 40.0;
 
 //weights for each constraints
 const double weight_cte = 2000.0;
 const double weight_epsi = 2000.0;
 const double weight_v = 1.0;
-const double weight_delta = 10.0;
+const double weight_delta = 50.0;
 const double weight_a = 10.0;
 const double weight_delta_diff = 200.0;
 const double weight_a_diff = 15.0;
