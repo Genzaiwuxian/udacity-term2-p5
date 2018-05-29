@@ -8,7 +8,7 @@
 using namespace std;
 
 const size_t N=12;
-const double dt=0.1;
+const double dt=0.11;
 
 // size_t N_h = 10;
 
@@ -31,7 +31,7 @@ const double weight_epsi = 3000.0;
 const double weight_v = 1.0;
 const double weight_delta = 10.0;
 const double weight_a = 10.0;
-const double weight_delta_diff = 100.0;
+const double weight_delta_diff = 200.0;
 const double weight_a_diff = 15.0;
 
 //numbers of states(6: x, y, psi, v, cte, epsi) + steering&acc/deceleration (2: delta, a)

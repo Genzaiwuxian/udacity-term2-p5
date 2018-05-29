@@ -134,15 +134,15 @@ int main() {
 		  double a= j[1]["throttle"];
 		  
 		  const double Lf = 2.67;
-		  double dt_main = 0.1;
+		  //double dt_main = 0.1;
 		  //size_t N = 10;
 
-		  const double x_next = 0.0 + v * dt_main;
+		  const double x_next = 0.0 + v * dt;
 		  const double y_next = 0;
-		  const double psi_next = 0.0 + v * (-delta) / Lf * dt_main;
-		  const double v_next = v + a * dt_main;
-		  const double cte_next = cte + v * sin(epsi)*dt_main;
-		  const double epsi_next = epsi + v * (-delta) / Lf * dt_main;
+		  const double psi_next = 0.0 + v * (-delta) / Lf * dt;
+		  const double v_next = v + a * dt;
+		  const double cte_next = cte + v * sin(epsi)*dt;
+		  const double epsi_next = epsi + v * (-delta) / Lf * dt;
 
 		  const int NUMBER_OF_STATES = 6;// 6 states: x, y, psi, v, cte, epsi
 		  Eigen::VectorXd states(NUMBER_OF_STATES);
