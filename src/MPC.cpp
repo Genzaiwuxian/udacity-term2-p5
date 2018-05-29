@@ -65,7 +65,7 @@ class FG_eval {
 		  fg[0] += (weight_delta*delta_2 + weight_a * a_2);
 
 		  // cost for delta and v
-		  fg[0] += 800 * CppAD::pow((vars[ID_FIRST_DELTA + i] * vars[ID_FIRST_V]),2);
+		  fg[0] += 10 * CppAD::pow((vars[ID_FIRST_DELTA + i] * vars[ID_FIRST_V]),2);
 	  }
 
 	  for (unsigned int i = 0; i < N - 2; i++)
