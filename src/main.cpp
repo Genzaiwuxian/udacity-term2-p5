@@ -90,7 +90,8 @@ int main() {
           double px = j[1]["x"];
           double py = j[1]["y"];
           double psi = j[1]["psi"];
-          double v = j[1]["speed"]/0.44073; //change from miles/h to m/s
+          double v = j[1]["speed"]; 
+		  v = v / 0.44073; //change from miles/h to m/s
 
           /*
           * TODO: Calculate steering angle and throttle using MPC.
