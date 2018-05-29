@@ -46,5 +46,9 @@ N, dt, and T are hyperparameters need to tune for each model predictive controll
 
 - speed: input speed is miles/h, and it is change into m/s by devided 0.44073;
 
+# latency
+In a real car, an actuation command won't execute instantly - there will be a delay as the command propagates through the system.
+This is a problem called "latency", and it's a difficult challenge for some controllers - like a PID controller - to overcome. But a Model Predictive Controller can adapt quite well because we can model this latency in the system
+A contributing factor to latency is actuator dynamics. for example, the latency is 0.1s, for mpc, it can calculate the next states after 0.1s and input those states instead of t-0.1s states. That will be more accuracy, the solver can calculate based on the more accuacary vehicle states.
 
 
