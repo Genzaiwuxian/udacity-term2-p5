@@ -90,7 +90,7 @@ int main() {
           double px = j[1]["x"];
           double py = j[1]["y"];
           double psi = j[1]["psi"];
-          double v = j[1]["speed"];
+          double v = j[1]["speed"]/0.44073; //change from miles/h to m/s
 
           /*
           * TODO: Calculate steering angle and throttle using MPC.
@@ -134,7 +134,7 @@ int main() {
 		  
 		  const double Lf = 2.67;
 		  double dt_main = 0.1;
-		  size_t N_main = 10;
+		  //size_t N = 10;
 
 		  const double x_next = 0.0 + v * dt_main;
 		  const double y_next = 0;
@@ -173,7 +173,7 @@ int main() {
           vector<double> next_x_vals;
           vector<double> next_y_vals;
 
-		  for (unsigned int i = 0; i < N_main; ++i)
+		  for (unsigned int i = 0; i < N; ++i)
 		  {
 			  double x = 25.0 * i; // show each 5 points
 			  double y = polyeval(coeffs, x);
