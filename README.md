@@ -39,3 +39,12 @@ N, dt, and T are hyperparameters need to tune for each model predictive controll
 - dt: choose 0.1, it equals to latency, mpc can solve latency problem by input the next dt states into solver, so dt=latency will be convinent
 - N: choose a large N will make calculation more accuacy as we understanding, however, large N will lead to more calculation time for computer, also for a high speed vehicle, a large N will not suitable for vehicle will not consider too far away.
 
+# pre-processing
+- waypoints: as waypoints is global coordinate, however, our mpc is based on vehicle coordinate, and it's more convinent to calcuate cte in vehicle coordinate, so it's better to change waypoints from global coordinate to vehicle coordinate;
+
+- steer_value: mpc solver use rad/s, and the range is [-25, +25], but our simulator only accept steer_value [-1, 1]. so the input for steer_value= mpc.steer/deg2rad(25);
+
+- speed: input speed is miles/h, and it is change into m/s by devided 0.44073;
+
+
+
