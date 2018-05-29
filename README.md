@@ -31,3 +31,9 @@ In this projects, some elements of MPC are:
   - cte_t+1= cte_t + v_t * sin(eψ_t) * dt
   - eψ_t+1 = eψ_t +(v_t/Lf) * δ_t * dt
   where: δ is distance x axis between middle point of vehicle and front axis, usually we can calculate by make vehicle run as a cycle to get this value.
+
+# N & dt
+N is the number of timesteps in the horizon. dt is how much time elapses between actuations.
+- N: 
+- dt: choose 0.1, it equals to latency, mpc can solve latency problem by input the next dt states into solver, so dt=latency will be convinent
+- N: 
