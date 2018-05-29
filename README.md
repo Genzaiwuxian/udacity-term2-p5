@@ -34,6 +34,8 @@ In this projects, some elements of MPC are:
 
 # N & dt
 N is the number of timesteps in the horizon. dt is how much time elapses between actuations.
+N, dt, and T are hyperparameters need to tune for each model predictive controller you build. However, there are some general guidelines. T should be as large as possible, while dt should be as small as possible.
 - N: 
 - dt: choose 0.1, it equals to latency, mpc can solve latency problem by input the next dt states into solver, so dt=latency will be convinent
-- N: 
+- N: choose a large N will make calculation more accuacy as we understanding, however, large N will lead to more calculation time for computer, also for a high speed vehicle, a large N will not suitable for vehicle will not consider too far away.
+
