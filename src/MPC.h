@@ -8,7 +8,7 @@
 using namespace std;
 
 const size_t N=12;
-const double dt=0.11;
+const double dt=0.1;
 
 // size_t N_h = 10;
 
@@ -23,7 +23,7 @@ const size_t ID_FIRST_DELTA = ID_FIRST_EPSI + N;
 const size_t ID_FIRST_A = ID_FIRST_DELTA + N-1;
 
 //target velocity
-const double TARGET_VELOCITY = 30.0;
+const double TARGET_VELOCITY = 25.0;
 
 //weights for each constraints
 const double weight_cte = 3000.0;
@@ -31,7 +31,7 @@ const double weight_epsi = 3000.0;
 const double weight_v = 1.0;
 const double weight_delta = 10.0;
 const double weight_a = 10.0;
-const double weight_delta_diff = 200.0;
+const double weight_delta_diff = 500.0;
 const double weight_a_diff = 15.0;
 
 //numbers of states(6: x, y, psi, v, cte, epsi) + steering&acc/deceleration (2: delta, a)
