@@ -20,7 +20,7 @@ const size_t ID_FIRST_V = ID_FIRST_PSI + N;
 const size_t ID_FIRST_CTE = ID_FIRST_V + N;
 const size_t ID_FIRST_EPSI = ID_FIRST_CTE + N;
 const size_t ID_FIRST_DELTA = ID_FIRST_EPSI + N;
-const size_t ID_FIRST_A = ID_FIRST_DELTA + N-1;
+const size_t ID_FIRST_A = ID_FIRST_DELTA + N;
 
 //target velocity
 const double TARGET_VELOCITY = 25.0;
