@@ -88,7 +88,7 @@ class FG_eval {
 	  fg[ID_FIRST_CTE + 1] = vars[ID_FIRST_CTE];
 	  fg[ID_FIRST_EPSI + 1] = vars[ID_FIRST_EPSI];
 
-	  for (unsigned int i = 0; i < N - 1; i++)
+	  for (unsigned int i = 0; i < N ; i++)
 	  {
 		  //current states and steering & acceleration/deceleration
 		  const auto x0 = vars[ID_FIRST_X + i];
